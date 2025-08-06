@@ -22,11 +22,7 @@ OS files
 .DS_Store
 Thumbs.db
 
-Model and output files
-*.pkl
-*.csv
-results/
-models/
+
 
 Python logs
 *.log
