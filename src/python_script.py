@@ -7,8 +7,9 @@ import numpy as np
 import joblib  # type: ignore
 from datetime import datetime
 
+
 # Load data
-df = pd.read_csv(r"D:\Bedo project\student_dataset.csv")
+df = pd.read_csv(r"D:\Bedo project\data\student_dataset.csv")
 
 # Drop unnecessary columns
 df.drop(columns=[
@@ -26,7 +27,7 @@ X = df.drop(columns=["Grade"])
 y = df["Grade"]
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
+    X, y, test_size=0.2, random_state=42, stratify=y #train 80 test 20
 )
 
 # Train model
@@ -49,11 +50,11 @@ report_df.loc['accuracy'] = [accuracy, np.nan, np.nan, np.nan]
 
 # Save with timestamped filename
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-output_path = fr"D:\Bedo project\results_{timestamp}.csv"
+output_path = fr"D:\Bedo project\results\results_{timestamp}.csv"
 report_df.to_csv(output_path, index=True)
 print(f"\nResults saved to: {output_path}")
 
 # Save model
-model_path = r"D:\Bedo project\xgb_model.pkl"
+model_path = r"D:\Bedo project\models\xgb_model.pkl"
 joblib.dump(model, model_path)
 print(f"Model saved to: {model_path}")
